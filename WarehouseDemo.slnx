@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ApiGatway/ApiGatway.csproj" />
+  <Project Path="Inventory.Api/Inventory.Api.csproj" />
+  <Project Path="Order.Api/Order.Api.csproj" />
+  <Project Path="Shipping.Api/Shipping.Api.csproj" />
+  <Project Path="Warehouse.SharedLibrary/Warehouse.SharedLibrary.csproj" />
+</Solution>

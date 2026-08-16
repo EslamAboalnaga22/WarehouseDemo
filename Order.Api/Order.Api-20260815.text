@@ -1,0 +1,96 @@
+2026-08-15 03:06:02.211 +03:00 [INF] Response status code does not indicate success: 404 (Not Found).
+2026-08-15 03:06:02.252 +03:00 [WRN] Response status code does not indicate success: 404 (Not Found).
+2026-08-15 03:07:43.035 +03:00 [INF] Response status code does not indicate success: 404 (Not Found).
+2026-08-15 03:07:43.067 +03:00 [WRN] Response status code does not indicate success: 404 (Not Found).
+2026-08-15 15:29:30.849 +03:00 [INF] No products found.
+2026-08-15 15:29:30.884 +03:00 [WRN] No products found.
+2026-08-15 15:30:28.320 +03:00 [INF] No products found.
+2026-08-15 15:30:28.351 +03:00 [WRN] No products found.
+2026-08-15 15:38:15.860 +03:00 [INF] Service Not Available
+2026-08-15 15:38:15.913 +03:00 [WRN] Service Not Available
+2026-08-15 15:38:51.739 +03:00 [INF] The JSON value could not be converted to System.Collections.Generic.List`1[Order.Api.Requests_Responses.ProductResponse]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+2026-08-15 15:38:51.777 +03:00 [WRN] The JSON value could not be converted to System.Collections.Generic.List`1[Order.Api.Requests_Responses.ProductResponse]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+2026-08-15 15:44:09.360 +03:00 [INF] The JSON value could not be converted to System.Collections.Generic.List`1[Order.Api.Requests_Responses.ProductResponse]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+2026-08-15 15:44:09.402 +03:00 [WRN] The JSON value could not be converted to System.Collections.Generic.List`1[Order.Api.Requests_Responses.ProductResponse]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+2026-08-15 15:48:56.624 +03:00 [INF] The JSON value could not be converted to System.Collections.Generic.List`1[Order.Api.Requests_Responses.ProductResponse]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+2026-08-15 15:48:56.658 +03:00 [WRN] The JSON value could not be converted to System.Collections.Generic.List`1[Order.Api.Requests_Responses.ProductResponse]. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+2026-08-15 15:50:42.726 +03:00 [INF] Response status code does not indicate success: 500 (Internal Server Error).
+2026-08-15 15:50:42.757 +03:00 [WRN] Response status code does not indicate success: 500 (Internal Server Error).
+2026-08-15 16:16:54.721 +03:00 [INF] Object reference not set to an instance of an object.
+2026-08-15 16:16:54.751 +03:00 [WRN] Object reference not set to an instance of an object.
+2026-08-15 16:17:02.116 +03:00 [INF] Object reference not set to an instance of an object.
+2026-08-15 16:17:02.117 +03:00 [WRN] Object reference not set to an instance of an object.
+2026-08-15 16:17:19.622 +03:00 [INF] Object reference not set to an instance of an object.
+2026-08-15 16:17:19.654 +03:00 [WRN] Object reference not set to an instance of an object.
+2026-08-15 16:18:18.624 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 16:18:18.665 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 16:19:54.211 +03:00 [INF] Object reference not set to an instance of an object.
+2026-08-15 16:19:54.245 +03:00 [WRN] Object reference not set to an instance of an object.
+2026-08-15 16:22:49.128 +03:00 [INF] Object reference not set to an instance of an object.
+2026-08-15 16:22:49.164 +03:00 [WRN] Object reference not set to an instance of an object.
+2026-08-15 16:23:57.133 +03:00 [INF] Object reference not set to an instance of an object.
+2026-08-15 16:23:57.162 +03:00 [WRN] Object reference not set to an instance of an object.
+2026-08-15 16:26:40.489 +03:00 [INF] Service Not Available
+2026-08-15 16:26:40.522 +03:00 [WRN] Service Not Available
+2026-08-15 16:27:17.359 +03:00 [INF] Object reference not set to an instance of an object.
+2026-08-15 16:27:17.390 +03:00 [WRN] Object reference not set to an instance of an object.
+2026-08-15 16:27:45.978 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 16:27:46.006 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 17:10:11.645 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 17:10:11.676 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 17:10:27.751 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 17:10:27.752 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 17:10:33.542 +03:00 [INF] The circuit is now open and is not allowing calls.
+2026-08-15 17:10:33.543 +03:00 [WRN] The circuit is now open and is not allowing calls.
+2026-08-15 18:38:06.817 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:38:06.846 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:38:13.228 +03:00 [INF] The circuit is now open and is not allowing calls.
+2026-08-15 18:38:13.230 +03:00 [WRN] The circuit is now open and is not allowing calls.
+2026-08-15 18:38:29.278 +03:00 [INF] The circuit is now open and is not allowing calls.
+2026-08-15 18:38:29.282 +03:00 [WRN] The circuit is now open and is not allowing calls.
+2026-08-15 18:39:38.088 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:39:38.117 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:39:45.218 +03:00 [INF] The circuit is now open and is not allowing calls.
+2026-08-15 18:39:45.219 +03:00 [WRN] The circuit is now open and is not allowing calls.
+2026-08-15 18:40:14.668 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:40:14.703 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:40:26.507 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:40:26.508 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:40:36.316 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:40:36.317 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:40:47.093 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:40:47.095 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:41:05.343 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:41:05.344 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:41:39.767 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:41:39.797 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:41:51.310 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:41:51.311 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:41:58.385 +03:00 [INF] The circuit is now open and is not allowing calls.
+2026-08-15 18:41:58.388 +03:00 [WRN] The circuit is now open and is not allowing calls.
+2026-08-15 18:47:22.844 +03:00 [WRN] Retrying request. Attempt: #1
+2026-08-15 18:47:25.264 +03:00 [WRN] Retrying request. Attempt: #2
+2026-08-15 18:47:26.825 +03:00 [WRN] Retrying request. Attempt: #3
+2026-08-15 18:47:31.825 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:47:31.826 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:48:59.052 +03:00 [WRN] Retrying request. Attempt: #1
+2026-08-15 18:48:59.228 +03:00 [WRN] Retrying request. Attempt: #2
+2026-08-15 18:49:02.881 +03:00 [WRN] Retrying request. Attempt: #3
+2026-08-15 18:49:06.363 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 18:49:06.364 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:09:54.131 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:09:54.164 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:10:07.694 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:10:07.695 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:11:19.425 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:11:19.513 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:11:30.939 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:11:30.940 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:11:38.676 +03:00 [INF] The circuit is now open and is not allowing calls.
+2026-08-15 20:11:38.677 +03:00 [WRN] The circuit is now open and is not allowing calls.
+2026-08-15 20:15:11.822 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:15:11.853 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:15:22.538 +03:00 [INF] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:15:22.539 +03:00 [WRN] Response status code does not indicate success: 408 (Request Timeout).
+2026-08-15 20:15:29.253 +03:00 [INF] The circuit is now open and is not allowing calls.
+2026-08-15 20:15:29.254 +03:00 [WRN] The circuit is now open and is not allowing calls.
