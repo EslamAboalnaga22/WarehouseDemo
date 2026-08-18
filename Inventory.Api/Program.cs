@@ -13,7 +13,7 @@ builder.Services.AddOpenApi();
 
 SharedServiceContainer.AddSharedServices(builder.Services, builder.Configuration, builder.Configuration["MySerilog:FileName"]);
 
-builder.Services.AddTransient<IProductServices, ProductServices>();
+builder.Services.AddScoped<IProductServices, ProductServices>();
 
 var app = builder.Build();
 

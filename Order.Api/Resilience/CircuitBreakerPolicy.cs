@@ -16,6 +16,7 @@ namespace Order.Api.Resilience
                          r.StatusCode == System.Net.HttpStatusCode.TooManyRequests ||
                          (int)r.StatusCode >= 500
                     ),
+
                 FailureRatio = 0.5, 
                 
                 MinimumThroughput = 10, 

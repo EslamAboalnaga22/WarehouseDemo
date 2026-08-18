@@ -22,6 +22,40 @@ namespace Order.Api.Controllers
             return Ok(products);
         }
 
+        [HttpGet("alternative")]
+        public async Task<IActionResult> GetAlternativeProducts()
+        {
+            var products = await _orderService.GetTestAlternativeProductAsync();
+
+            if (products is null)
+                return NotFound("Alternative products not found");
+
+            return Ok(products);
+        }
+
+        [HttpGet("test-rate-limit")]
+        public async Task<IActionResult> TestRateLimitBurst()
+        {
+            using var client = new HttpClient();
+
+            var tasks = Enumerable.Range(1, 5)
+                .Select(async i =>
+                {
+                    var response = await client.GetAsync(
+                        "http://localhost:5002/api/Orders");
+
+                    return new
+                    {
+                        Request = i,
+                        StatusCode = (int)response.StatusCode
+                    };
+                });
+
+            var results = await Task.WhenAll(tasks);
+
+            return Ok(results);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest request)
         {

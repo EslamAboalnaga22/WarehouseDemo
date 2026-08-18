@@ -12,12 +12,27 @@ builder.Services.AddOpenApi();
 
 SharedServiceContainer.AddSharedServices(builder.Services, builder.Configuration, builder.Configuration["MySerilog:FileName"]);
 
+builder.Services.AddScoped<IOrderService, OrderService>();
 
-builder.Services.AddHttpClient<IOrderService, OrderService>(client =>
+builder.Services.AddHttpClient("OrderClient", client =>
 { 
     client.BaseAddress = new Uri("http://localhost:5001/");
 })
-    .AddResilienceHandler("order-pipeline", OrderPipelines.Configure);
+    .AddResilienceHandler("order-pipeline", (builder, context) =>
+    {
+        var factory = context.ServiceProvider.GetRequiredService<IHttpClientFactory>();
+        OrderPipelines.Configure(builder, factory);
+    });
+
+builder.Services.AddHttpClient("AlternativeClient", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5003/");
+})
+    .AddResilienceHandler("order-pipeline", (builder, context) =>
+    {
+        var factory = context.ServiceProvider.GetRequiredService<IHttpClientFactory>();
+        OrderPipelines.Configure(builder, factory);
+    });
 
 var app = builder.Build();
 

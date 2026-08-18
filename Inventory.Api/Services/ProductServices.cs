@@ -1,7 +1,6 @@
 ﻿using Inventory.Api.Data;
 using Inventory.Api.Models;
 using System.Linq.Expressions;
-using Warehouse.SharedLibrary.Interface;
 using Warehouse.SharedLibrary.Responses;
 
 namespace Inventory.Api.Services
@@ -11,7 +10,7 @@ namespace Inventory.Api.Services
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
             //throw new TimeoutException("Service Not Available");
-            await Task.Delay(7000);
+            await Task.Delay(10000);
 
             var products =  VirtualProducts.GetProducts();
 

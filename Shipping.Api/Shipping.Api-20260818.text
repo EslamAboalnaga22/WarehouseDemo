@@ -1,0 +1,2 @@
+2026-08-18 01:47:41.366 +03:00 [INF] Unable to resolve service for type 'Shipping.Api.Services.TestHedjing' while attempting to activate 'Shipping.Api.Controllers.ShippingController'.
+2026-08-18 01:47:41.397 +03:00 [WRN] Unable to resolve service for type 'Shipping.Api.Services.TestHedjing' while attempting to activate 'Shipping.Api.Controllers.ShippingController'.

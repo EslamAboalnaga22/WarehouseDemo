@@ -1,0 +1,32 @@
+2026-08-18 01:51:22.675 +03:00 [INF] The JSON value could not be converted to System.String. Path: $[0] | LineNumber: 0 | BytePositionInLine: 2.
+2026-08-18 01:51:22.706 +03:00 [WRN] The JSON value could not be converted to System.String. Path: $[0] | LineNumber: 0 | BytePositionInLine: 2.
+2026-08-18 01:52:30.921 +03:00 [INF] The JSON value could not be converted to System.String. Path: $[0] | LineNumber: 0 | BytePositionInLine: 2.
+2026-08-18 01:52:30.955 +03:00 [WRN] The JSON value could not be converted to System.String. Path: $[0] | LineNumber: 0 | BytePositionInLine: 2.
+2026-08-18 02:02:11.928 +03:00 [INF] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:02:11.958 +03:00 [WRN] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:02:43.880 +03:00 [INF] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:02:43.918 +03:00 [WRN] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:03:13.576 +03:00 [INF] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:03:13.608 +03:00 [WRN] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:04:52.555 +03:00 [INF] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:04:52.598 +03:00 [WRN] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:04:55.528 +03:00 [INF] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:04:55.531 +03:00 [WRN] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:04:58.723 +03:00 [INF] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:04:58.725 +03:00 [WRN] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:14:17.615 +03:00 [INF] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:14:17.659 +03:00 [WRN] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:17:06.485 +03:00 [INF] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:17:06.522 +03:00 [WRN] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:22:22.430 +03:00 [INF] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:22:22.458 +03:00 [WRN] A suitable constructor for type 'OrderService' could not be located. A Typed client must provide a constructor taking a 'System.Net.Http.HttpClient' as a parameter.
+2026-08-18 02:23:49.083 +03:00 [INF] Unable to resolve service for type 'Order.Api.Services.IOrderService' while attempting to activate 'Order.Api.Controllers.OrdersController'.
+2026-08-18 02:23:49.115 +03:00 [WRN] Unable to resolve service for type 'Order.Api.Services.IOrderService' while attempting to activate 'Order.Api.Controllers.OrdersController'.
+2026-08-18 02:23:56.069 +03:00 [INF] Unable to resolve service for type 'Order.Api.Services.IOrderService' while attempting to activate 'Order.Api.Controllers.OrdersController'.
+2026-08-18 02:23:56.070 +03:00 [WRN] Unable to resolve service for type 'Order.Api.Services.IOrderService' while attempting to activate 'Order.Api.Controllers.OrdersController'.
+2026-08-18 14:48:52.859 +03:00 [INF] Response status code does not indicate success: 404 (Not Found).
+2026-08-18 14:48:52.895 +03:00 [WRN] Response status code does not indicate success: 404 (Not Found).
+2026-08-18 14:57:31.891 +03:00 [INF] The JSON value could not be converted to Order.Api.Requests_Responses.ProductResponse. Path: $[0] | LineNumber: 0 | BytePositionInLine: 21.
+2026-08-18 14:57:31.922 +03:00 [WRN] The JSON value could not be converted to Order.Api.Requests_Responses.ProductResponse. Path: $[0] | LineNumber: 0 | BytePositionInLine: 21.
+2026-08-18 15:03:17.509 +03:00 [INF] The JSON value could not be converted to Order.Api.Requests_Responses.ProductResponse. Path: $[0] | LineNumber: 0 | BytePositionInLine: 21.
+2026-08-18 15:03:17.540 +03:00 [WRN] The JSON value could not be converted to Order.Api.Requests_Responses.ProductResponse. Path: $[0] | LineNumber: 0 | BytePositionInLine: 21.
