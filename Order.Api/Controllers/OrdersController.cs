@@ -14,13 +14,14 @@ namespace Order.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
-            var products = await _orderService.GetProductAsync();
+            var products = await _orderService.GetTestAuthorizationAsync();
 
             if (products is null)
                 return NotFound("Products Request not found");
 
             return Ok(products);
         }
+
 
         [HttpGet("alternative")]
         public async Task<IActionResult> GetAlternativeProducts()

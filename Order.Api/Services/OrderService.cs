@@ -10,8 +10,10 @@ namespace Order.Api.Services
 
         public async Task<List<ProductResponse>> GetProductAsync()
         {
+            //var responseProducts = await _OrderClient
+            //    .GetFromJsonAsync<List<ProductResponse>>($"api/inventory");
             var responseProducts = await _OrderClient
-                .GetFromJsonAsync<List<ProductResponse>>($"api/inventory");
+                .GetFromJsonAsync<List<ProductResponse>>($"gateway/inventory");
 
             if (responseProducts == null || !responseProducts.Any())
                 throw new Exception("No products found.");
@@ -27,6 +29,16 @@ namespace Order.Api.Services
                 throw new Exception("No products found.");
 
             return responseProducts is not null ? responseProducts : null!;
+        }
+
+        public async Task<List<ProductResponse>> GetTestAuthorizationAsync()
+        {
+            List<ProductResponse> productsAuthorization = [
+                new ProductResponse { Id = 111, Name = "Product A TestAuthorization", Price = 10.99m, Stock = 100 },
+                new ProductResponse { Id = 222, Name = "Product B TestAuthorization", Price = 15.99m, Stock = 50 },
+                ];
+
+            return productsAuthorization is not null ? productsAuthorization : null!;
         }
 
         public async Task<Models.Order> CreateOrderAsync(CreateOrderRequest request)

@@ -16,7 +16,8 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddHttpClient("OrderClient", client =>
 { 
-    client.BaseAddress = new Uri("http://localhost:5001/");
+    //client.BaseAddress = new Uri("http://localhost:5001/");
+    client.BaseAddress = new Uri("http://localhost:5000/");
 })
     .AddResilienceHandler("order-pipeline", (builder, context) =>
     {

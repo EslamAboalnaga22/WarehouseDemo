@@ -8,7 +8,7 @@ namespace Order.Api.Resilience
         {
             //RetryPolicy.Configure(builder);
             //RateLimiterPolicy.Configure(builder);
-            HedjingPolicy.Configure(builder, httpClientFactory);
+            //HedjingPolicy.Configure(builder, httpClientFactory);
             //FallbackPolicy.Configure(builder);
             //TimeoutPolicy.Configure(builder);
             //CircuitBreakerPolicy.Configure(builder);

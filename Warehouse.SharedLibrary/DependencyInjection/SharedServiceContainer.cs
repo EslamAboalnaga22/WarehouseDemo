@@ -41,7 +41,7 @@ namespace Warehouse.SharedLibrary.DependencyInjection
 
             app.UseMiddleware<GlobalException>();
 
-            // app.UseMiddleware<ListenOnlyToApiGateway>();
+            //app.UseMiddleware<ListenOnlyToApiGateway>();
 
             return app;
         }
