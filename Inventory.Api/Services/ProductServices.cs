@@ -10,7 +10,7 @@ namespace Inventory.Api.Services
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
             //throw new TimeoutException("Service Not Available");
-            await Task.Delay(10000);
+            //await Task.Delay(10000);
 
             var products =  VirtualProducts.GetProducts();
 
