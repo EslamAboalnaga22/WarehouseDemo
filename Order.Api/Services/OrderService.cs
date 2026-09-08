@@ -1,12 +1,15 @@
-﻿using Order.Api.Requests;
+﻿using Order.Api.Events;
+using Order.Api.Requests;
 using Order.Api.Requests_Responses;
 
 namespace Order.Api.Services
 {
-    public class OrderService(IHttpClientFactory httpClientFactory) : IOrderService
+    public class OrderService(IHttpClientFactory httpClientFactory, IRabbitMqPublisher rabbitMqPublisher) : IOrderService
     {
         private readonly HttpClient _OrderClient = httpClientFactory.CreateClient("OrderClient");
         private readonly HttpClient _AlternativeClient = httpClientFactory.CreateClient("AlternativeClient");
+
+        private readonly IRabbitMqPublisher _rabbitMqPublisher = rabbitMqPublisher;
 
         public async Task<List<ProductResponse>> GetProductAsync()
         {
@@ -59,6 +62,15 @@ namespace Order.Api.Services
                 Quantity = request.Quantity,
                 Status = "Created"
             };
+
+            var orderCreatedEvent = new OrderCreatedEvent(
+                new Random().Next(1, 5), 
+                request.ProductId, 
+                request.Quantity
+             );
+
+
+            await _rabbitMqPublisher.Publish(orderCreatedEvent);
 
             return order;
         }

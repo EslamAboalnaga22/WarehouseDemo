@@ -1,4 +1,4 @@
-﻿namespace Order.Api.Events
+﻿namespace Inventory.Api.Events
 {
     public record OrderCreatedEvent(
     int OrderId,

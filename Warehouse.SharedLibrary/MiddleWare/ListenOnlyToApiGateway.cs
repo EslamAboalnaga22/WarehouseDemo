@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System.Net;
-using Warehouse.SharedLibrary.Logs;
 
 namespace Warehouse.SharedLibrary.MiddleWare
 {

@@ -1,21 +1,25 @@
+using Shipping.Api.Consumers;
 using Shipping.Api.Services;
+using Warehouse.SharedLibrary.Configuration;
 using Warehouse.SharedLibrary.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
 builder.Services.AddOpenApi();
 
 SharedServiceContainer.AddSharedServices(builder.Services, builder.Configuration, builder.Configuration["MySerilog:FileName"]);
 
 builder.Services.AddScoped<TestHedjing>();
 
+// RabbitMQ configuration
+var rabbitMqConfig = builder.Configuration.GetSection("RabbitMqConfiguration").Get<RabbitMqConfiguration>();
+builder.Services.AddSingleton(rabbitMqConfig);
+builder.Services.AddHostedService<OrderCreatedConsumer>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

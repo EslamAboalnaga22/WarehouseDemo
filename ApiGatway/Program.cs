@@ -1,3 +1,4 @@
+using ApiGatway.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
@@ -47,7 +48,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-//app.UseMiddleware<AttachSignatureToRequest>();
+app.UseMiddleware<AttachSignatureToRequest>();
 
 app.MapControllers();
 

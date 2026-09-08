@@ -1,13 +1,12 @@
 using Order.Api.Resilience;
 using Order.Api.Services;
+using Warehouse.SharedLibrary.Configuration;
 using Warehouse.SharedLibrary.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
 builder.Services.AddOpenApi();
 
 SharedServiceContainer.AddSharedServices(builder.Services, builder.Configuration, builder.Configuration["MySerilog:FileName"]);
@@ -15,9 +14,9 @@ SharedServiceContainer.AddSharedServices(builder.Services, builder.Configuration
 builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddHttpClient("OrderClient", client =>
-{ 
-    //client.BaseAddress = new Uri("http://localhost:5001/");
-    client.BaseAddress = new Uri("http://localhost:5000/");
+{
+    client.BaseAddress = new Uri("http://localhost:5001/");
+    //client.BaseAddress = new Uri("http://localhost:5000/");
 })
     .AddResilienceHandler("order-pipeline", (builder, context) =>
     {
@@ -35,9 +34,14 @@ builder.Services.AddHttpClient("AlternativeClient", client =>
         OrderPipelines.Configure(builder, factory);
     });
 
+// RabbitMQ configuration
+var rabbitMqConfig = builder.Configuration.GetSection("RabbitMqConfiguration").Get<RabbitMqConfiguration>();
+builder.Services.AddSingleton(rabbitMqConfig);
+builder.Services.AddSingleton<IRabbitMqPublisher, RabbitMqPublisher>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

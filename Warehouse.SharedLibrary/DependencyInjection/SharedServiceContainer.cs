@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Serilog.Events;
 using Serilog;
-using Microsoft.AspNetCore.Builder;
-using System.Runtime.CompilerServices;
+using Serilog.Events;
 using Warehouse.SharedLibrary.MiddleWare;
 
 namespace Warehouse.SharedLibrary.DependencyInjection

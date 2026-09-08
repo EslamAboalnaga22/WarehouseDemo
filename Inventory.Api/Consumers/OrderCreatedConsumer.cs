@@ -1,10 +1,10 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using Shipping.Api.Events;
-using System.Text.Json;
 using Warehouse.SharedLibrary.Configuration;
+using System.Text.Json;
+using Inventory.Api.Events;
 
-namespace Shipping.Api.Consumers
+namespace Inventory.Api.Consumers
 {
     public class OrderCreatedConsumer : BackgroundService
     {
@@ -34,7 +34,7 @@ namespace Shipping.Api.Consumers
                 type: ExchangeType.Fanout);
 
             //var queueName = (await channel.QueueDeclareAsync()).QueueName;
-            var queueName = "shipping.order-created";
+            var queueName = "inventory.order-created";
 
             await channel.QueueDeclareAsync(
                  queue: queueName,
@@ -60,7 +60,7 @@ namespace Shipping.Api.Consumers
 
                 Console.WriteLine("Fanout Exchange");
                 Console.WriteLine("===============");
-                Console.WriteLine($"[Shipping.API] Received OrderCreatedEvent: \n OrderId={message.OrderId},\n ProductId={message.ProductId}, \n Quantity={message.Quantity}");
+                Console.WriteLine($"[Inventory.API] Received OrderCreatedEvent : \n OrderId={message.OrderId},\n ProductId={message.ProductId}, \n Quantity={message.Quantity}");
             };
 
             await channel.BasicConsumeAsync(

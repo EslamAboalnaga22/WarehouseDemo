@@ -12,7 +12,11 @@ namespace Inventory.Api.Services
             //throw new TimeoutException("Service Not Available");
             //await Task.Delay(10000);
 
-            var products =  VirtualProducts.GetProducts();
+            //var products =  VirtualProducts.GetProducts();
+            List<Product> products = [
+                new Product { Id = 1, Name = "Product 1", Price = 10.99m, Stock = 100 },
+                new Product { Id = 1, Name = "Product 1", Price = 10.99m, Stock = 100 },
+                ];
 
             return products is not null ? products : Enumerable.Empty<Product>();
         }
