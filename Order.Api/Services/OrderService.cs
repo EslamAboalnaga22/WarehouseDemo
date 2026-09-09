@@ -44,7 +44,7 @@ namespace Order.Api.Services
             return productsAuthorization is not null ? productsAuthorization : null!;
         }
 
-        public async Task<Models.Order> CreateOrderAsync(CreateOrderRequest request)
+        public async Task<Models.Order> CreateOrderAsync(CreateOrderRequest request, string bindingKey)
         {
             var response = await _OrderClient
                 .PostAsJsonAsync("api/inventory/Stock", request);    
@@ -70,9 +70,10 @@ namespace Order.Api.Services
              );
 
 
-            await _rabbitMqPublisher.Publish(orderCreatedEvent);
+            await _rabbitMqPublisher.Publish(orderCreatedEvent, bindingKey);
 
             return order;
         }
+
     }
 }

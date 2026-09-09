@@ -20,7 +20,7 @@ namespace Order.Api.Services
 
             };
         }
-        public async Task Publish(OrderCreatedEvent message)
+        public async Task Publish(OrderCreatedEvent message, string routingKey)
         {
             var connection = await _factory.CreateConnectionAsync();
 
@@ -28,7 +28,7 @@ namespace Order.Api.Services
 
             await channel.ExchangeDeclareAsync(
                 exchange: _rabbitMqConfig.ExchangeName, 
-                type: ExchangeType.Fanout);
+                type: ExchangeType.Direct);
 
             var body = JsonSerializer.SerializeToUtf8Bytes(message);
 
@@ -36,7 +36,7 @@ namespace Order.Api.Services
 
             await channel.BasicPublishAsync(
                 exchange: _rabbitMqConfig.ExchangeName,
-                routingKey: "",
+                routingKey: routingKey,
                 mandatory: false,
                 basicProperties: props,
                 body: body);

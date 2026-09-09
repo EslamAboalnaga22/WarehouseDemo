@@ -58,12 +58,12 @@ namespace Order.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest request)
+        public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest request , string bindingKey)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _orderService.CreateOrderAsync(request);
+            await _orderService.CreateOrderAsync(request, bindingKey);
 
             return Ok("Order created successfully.");
 

@@ -31,7 +31,7 @@ namespace Shipping.Api.Consumers
 
             await channel.ExchangeDeclareAsync(
                 exchange: _rabbitMqConfig.ExchangeName,
-                type: ExchangeType.Fanout);
+                type: ExchangeType.Direct);
 
             //var queueName = (await channel.QueueDeclareAsync()).QueueName;
             var queueName = "shipping.order-created";
@@ -46,7 +46,7 @@ namespace Shipping.Api.Consumers
             await channel.QueueBindAsync(
                 queue: queueName,
                 exchange: _rabbitMqConfig.ExchangeName,
-                routingKey: "",
+                routingKey: _rabbitMqConfig.BindingKey,
                 arguments: null
             );
 
@@ -58,9 +58,9 @@ namespace Shipping.Api.Consumers
 
                 var message = JsonSerializer.Deserialize<OrderCreatedEvent>(body);
 
-                Console.WriteLine("Fanout Exchange");
+                Console.WriteLine("Direct Exchange");
                 Console.WriteLine("===============");
-                Console.WriteLine($"[Shipping.API] Received OrderCreatedEvent: \n OrderId={message.OrderId},\n ProductId={message.ProductId}, \n Quantity={message.Quantity}");
+                Console.WriteLine($"[Shipping.API] \n Received OrderCreatedEvent (using routing key --> {_rabbitMqConfig.BindingKey}) : \n OrderId={message.OrderId},\n ProductId={message.ProductId}, \n Quantity={message.Quantity}");
             };
 
             await channel.BasicConsumeAsync(
