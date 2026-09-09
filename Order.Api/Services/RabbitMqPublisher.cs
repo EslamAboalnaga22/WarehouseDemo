@@ -28,7 +28,7 @@ namespace Order.Api.Services
 
             await channel.ExchangeDeclareAsync(
                 exchange: _rabbitMqConfig.ExchangeName, 
-                type: ExchangeType.Direct);
+                type: ExchangeType.Topic);
 
             var body = JsonSerializer.SerializeToUtf8Bytes(message);
 
