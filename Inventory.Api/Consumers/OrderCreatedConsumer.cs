@@ -1,8 +1,9 @@
-﻿using RabbitMQ.Client;
+﻿using Inventory.Api.Events;
+using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using Warehouse.SharedLibrary.Configuration;
+using System.Text;
 using System.Text.Json;
-using Inventory.Api.Events;
+using Warehouse.SharedLibrary.Configuration;
 
 namespace Inventory.Api.Consumers
 {
@@ -29,42 +30,61 @@ namespace Inventory.Api.Consumers
 
             var channel = await connection.CreateChannelAsync();
 
-            await channel.ExchangeDeclareAsync(
-                exchange: _rabbitMqConfig.ExchangeName,
-                type: ExchangeType.Topic);
-
             //var queueName = (await channel.QueueDeclareAsync()).QueueName;
-            var queueName = "inventory.order-created";
+            var requestQueueName = "order-created-queue";
 
-            await channel.QueueDeclareAsync(
-                 queue: queueName,
+            var replyQueue = await channel.QueueDeclareAsync(
+                 queue: requestQueueName,
                  durable: true,
                  exclusive: false,
                  autoDelete: false
-            );
-
-            await channel.QueueBindAsync(
-                queue: queueName,
-                exchange: _rabbitMqConfig.ExchangeName,
-                routingKey: _rabbitMqConfig.BindingKey,
-                arguments: null
             );
 
             var consumer = new AsyncEventingBasicConsumer(channel);
 
             consumer.ReceivedAsync += async (model, ea) =>
             {
+                await Task.Delay(5000, stoppingToken);
+
                 var body = ea.Body.ToArray();
 
                 var message = JsonSerializer.Deserialize<OrderCreatedEvent>(body);
 
-                Console.WriteLine("Topic Exchange");
-                Console.WriteLine("===============");
-                Console.WriteLine($"[Inventory.API] \n Received OrderCreatedEvent (using routing key --> {_rabbitMqConfig.BindingKey}) : \n OrderId={message.OrderId},\n ProductId={message.ProductId}, \n Quantity={message.Quantity}");
+                Console.WriteLine("=====================");
+                Console.WriteLine("Request-Reply Pattern");
+                Console.WriteLine("=====================");
+                Console.WriteLine("(Request Received.)");
+                Console.WriteLine($"[Inventory.API] \n OrderId={message.OrderId},\n ProductId={message.ProductId}, \n Quantity={message.Quantity}");
+                Console.WriteLine("=====================");
+                Console.WriteLine("Sending Reply...");
+                Console.WriteLine("=====================");
+
+                var responseMessage = "Done From the [Inventory.API]";
+                var resposneBody = Encoding.UTF8.GetBytes(responseMessage);
+
+                var props = new BasicProperties
+                {
+                    CorrelationId = ea.BasicProperties.CorrelationId
+                };
+
+                await Task.Delay(5000, stoppingToken);
+
+                await channel.BasicPublishAsync(
+                    exchange: "",
+                    routingKey: ea.BasicProperties.ReplyTo,
+                    false,
+                    basicProperties: props,
+                    body: resposneBody);
+
+                Console.WriteLine("=================================");
+                Console.WriteLine("[Inventory.API] Reply Sent");
+                //Console.WriteLine(responseMessage);
+                Console.WriteLine("=================================");
+
             };
 
             await channel.BasicConsumeAsync(
-                queue: queueName,
+                queue: requestQueueName,
                 autoAck: true,
                 consumer: consumer
             );

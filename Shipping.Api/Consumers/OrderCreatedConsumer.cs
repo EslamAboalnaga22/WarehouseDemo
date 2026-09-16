@@ -29,9 +29,16 @@ namespace Shipping.Api.Consumers
 
             var channel = await connection.CreateChannelAsync();
 
-            await channel.ExchangeDeclareAsync(
-                exchange: _rabbitMqConfig.ExchangeName,
-                type: ExchangeType.Topic);
+            //await channel.ExchangeDeclareAsync(
+            //    exchange: _rabbitMqConfig.ExchangeName,
+            //    type: ExchangeType.Headers);
+
+            var bindingHeaders = new Dictionary<string, object>
+            {
+                { "x-match", "any" },
+                { "type", "product" },
+                { "source", "order" }
+            };
 
             //var queueName = (await channel.QueueDeclareAsync()).QueueName;
             var queueName = "shipping.order-created";
@@ -43,12 +50,12 @@ namespace Shipping.Api.Consumers
                  autoDelete: false
             );
 
-            await channel.QueueBindAsync(
-                queue: queueName,
-                exchange: _rabbitMqConfig.ExchangeName,
-                routingKey: _rabbitMqConfig.BindingKey,
-                arguments: null
-            );
+            //await channel.QueueBindAsync(
+            //    queue: queueName,
+            //    exchange: _rabbitMqConfig.ExchangeName,
+            //    routingKey: _rabbitMqConfig.BindingKey,
+            //    arguments: bindingHeaders
+            //);
 
             var consumer = new AsyncEventingBasicConsumer(channel);
 
@@ -58,9 +65,9 @@ namespace Shipping.Api.Consumers
 
                 var message = JsonSerializer.Deserialize<OrderCreatedEvent>(body);
 
-                Console.WriteLine("Topic Exchange");
+                Console.WriteLine("Header Exchange");
                 Console.WriteLine("===============");
-                Console.WriteLine($"[Shipping.API] \n Received OrderCreatedEvent (using routing key --> {_rabbitMqConfig.BindingKey}) : \n OrderId={message.OrderId},\n ProductId={message.ProductId}, \n Quantity={message.Quantity}");
+                Console.WriteLine($"[Shipping.API] \n OrderId={message.OrderId},\n ProductId={message.ProductId}, \n Quantity={message.Quantity}");
             };
 
             await channel.BasicConsumeAsync(

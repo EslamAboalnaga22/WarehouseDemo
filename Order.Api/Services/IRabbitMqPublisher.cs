@@ -4,6 +4,6 @@ namespace Order.Api.Services
 {
     public interface IRabbitMqPublisher
     {
-        Task Publish(OrderCreatedEvent message , string routingKey);
+        Task Publish(OrderCreatedEvent message, CancellationToken stoppingToken);
     }
 }

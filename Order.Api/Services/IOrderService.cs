@@ -8,6 +8,6 @@ namespace Order.Api.Services
         Task<List<ProductResponse>> GetProductAsync();
         Task<List<ProductResponse>> GetTestAlternativeProductAsync();
         Task<List<ProductResponse>> GetTestAuthorizationAsync();
-        Task<Models.Order> CreateOrderAsync(CreateOrderRequest request , string bindingKey);
+        Task<Models.Order> CreateOrderAsync(CreateOrderRequest request);
     }
 }
