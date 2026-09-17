@@ -6,7 +6,8 @@
         public string UserName { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string QueueName { get; set; } = string.Empty;
-        //public string ExchangeName { get; set; } = string.Empty;
-        //public string BindingKey { get; set; } = string.Empty;
+        public string ExchangeName { get; set; } = string.Empty;
+        public string DLExchangeName { get; set; } = string.Empty;
+        public string DLQExchangeName { get; set; } = string.Empty;
     }
 }

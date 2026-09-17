@@ -1,7 +1,6 @@
 ﻿using Inventory.Api.Events;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System.Text;
 using System.Text.Json;
 using Warehouse.SharedLibrary.Configuration;
 
@@ -30,66 +29,87 @@ namespace Inventory.Api.Consumers
 
             var channel = await connection.CreateChannelAsync();
 
-            //var queueName = (await channel.QueueDeclareAsync()).QueueName;
-            var requestQueueName = "order-created-queue";
+            await channel.ExchangeDeclareAsync(exchange: _rabbitMqConfig.ExchangeName,
+                type: ExchangeType.Direct);
 
-            var replyQueue = await channel.QueueDeclareAsync(
-                 queue: requestQueueName,
+            await channel.ExchangeDeclareAsync(exchange: _rabbitMqConfig.DLExchangeName,
+                 type: ExchangeType.Fanout);
+
+            var arguments = new Dictionary<string, object>
+            {
+                { "x-dead-letter-exchange", _rabbitMqConfig.DLExchangeName },
+                { "x-message-ttl", 1000 } // 1 seconds
+            };
+
+            var queueName = await channel.QueueDeclareAsync(
+                 queue: _rabbitMqConfig.QueueName,
                  durable: true,
                  exclusive: false,
-                 autoDelete: false
+                 autoDelete: false,
+                 arguments: arguments
             );
+
+            await channel.QueueBindAsync(
+                queue: _rabbitMqConfig.QueueName,
+                exchange: _rabbitMqConfig.ExchangeName,
+                routingKey: "");
 
             var consumer = new AsyncEventingBasicConsumer(channel);
 
             consumer.ReceivedAsync += async (model, ea) =>
-            {
-                await Task.Delay(5000, stoppingToken);
-
+            {      
                 var body = ea.Body.ToArray();
 
                 var message = JsonSerializer.Deserialize<OrderCreatedEvent>(body);
 
-                Console.WriteLine("=====================");
-                Console.WriteLine("Request-Reply Pattern");
-                Console.WriteLine("=====================");
-                Console.WriteLine("(Request Received.)");
                 Console.WriteLine($"[Inventory.API] \n OrderId={message.OrderId},\n ProductId={message.ProductId}, \n Quantity={message.Quantity}");
-                Console.WriteLine("=====================");
-                Console.WriteLine("Sending Reply...");
-                Console.WriteLine("=====================");
+            };
 
-                var responseMessage = "Done From the [Inventory.API]";
-                var resposneBody = Encoding.UTF8.GetBytes(responseMessage);
+            //await channel.BasicConsumeAsync(
+            //    queue: _rabbitMqConfig.QueueName,
+            //    autoAck: true,
+            //    consumer: consumer
+            //);
 
-                var props = new BasicProperties
-                {
-                    CorrelationId = ea.BasicProperties.CorrelationId
-                };
 
-                await Task.Delay(5000, stoppingToken);
+            // Dead Letter Exchange Consumer
+            await channel.QueueDeclareAsync(
+                queue: _rabbitMqConfig.DLQExchangeName,
+                durable: true,
+                exclusive: false,
+                autoDelete: false
+            );
 
-                await channel.BasicPublishAsync(
-                    exchange: "",
-                    routingKey: ea.BasicProperties.ReplyTo,
-                    false,
-                    basicProperties: props,
-                    body: resposneBody);
+            await channel.QueueBindAsync(
+                queue: _rabbitMqConfig.DLQExchangeName,
+                exchange: _rabbitMqConfig.DLExchangeName,
+                routingKey: "");
 
-                Console.WriteLine("=================================");
-                Console.WriteLine("[Inventory.API] Reply Sent");
-                //Console.WriteLine(responseMessage);
-                Console.WriteLine("=================================");
+            var dlxConsumer = new AsyncEventingBasicConsumer(channel);
 
+            dlxConsumer.ReceivedAsync += async (model, ea) =>
+            {
+                var body = ea.Body.ToArray();
+
+                var message = JsonSerializer.Deserialize<OrderCreatedEvent>(body);
+
+                Console.WriteLine("====================");
+                Console.WriteLine("Dead Letter Exchange");
+                Console.WriteLine("====================");
+                Console.WriteLine("(That is from Dead Letter Exchange)");
+                Console.WriteLine($"[Inventory.API] \n OrderId={message.OrderId},\n ProductId={message.ProductId}, \n Quantity={message.Quantity}");
             };
 
             await channel.BasicConsumeAsync(
-                queue: requestQueueName,
+                queue: _rabbitMqConfig.DLQExchangeName,
                 autoAck: true,
-                consumer: consumer
+                consumer: dlxConsumer
             );
 
-            await Task.Delay(Timeout.Infinite, stoppingToken);
+            Console.WriteLine("Consumeing..");
+
+
+            //await Task.Delay(Timeout.Infinite, stoppingToken);
         }
     }
 }
