@@ -1,4 +1,5 @@
 ﻿using Order.Api.Events;
+using Order.Api.OrderDiagnostics;
 using Order.Api.Requests;
 using Order.Api.Requests_Responses;
 
@@ -69,8 +70,20 @@ namespace Order.Api.Services
                 request.Quantity
              );
 
+            // Custom Trace
+            using var activity = OrderDiagnosticsCreated.ActivitySource.StartActivity("Create Product");
+            activity?.SetTag("product-id", request.ProductId);
+            activity?.SetTag("product-quantity", request.Quantity);
 
-            await _rabbitMqPublisher.Publish(orderCreatedEvent, CancellationToken.None);
+            var orderId = Guid.NewGuid();
+
+            OrderDiagnosticsCreated.OrdersCreated.Add(
+                delta: 1,
+                tag: new KeyValuePair<string, object>("product", request.ProductId));
+
+            //logger.LogInformation($"Product {orderId} created successfully.");
+
+            //await _rabbitMqPublisher.Publish(orderCreatedEvent, CancellationToken.None);
 
             return order;
         }

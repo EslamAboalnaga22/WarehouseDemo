@@ -109,7 +109,7 @@ namespace Inventory.Api.Consumers
             Console.WriteLine("Consumeing..");
 
 
-            //await Task.Delay(Timeout.Infinite, stoppingToken);
+            await Task.Delay(Timeout.Infinite, stoppingToken);
         }
     }
 }

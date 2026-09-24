@@ -1,4 +1,5 @@
 ﻿using Inventory.Api.Data;
+using Inventory.Api.InventoryDiagnostics;
 using Inventory.Api.Models;
 using System.Linq.Expressions;
 using Warehouse.SharedLibrary.Responses;
@@ -32,10 +33,25 @@ namespace Inventory.Api.Services
         {
             var product = VirtualProducts.GetProducts().FirstOrDefault(x => x.Id == id);
 
+            // Custom Trace
+            using var activity = InventoryDiagnosticsReaded.ActivitySource.StartActivity("Create Product");
+            activity?.SetTag("product-id", product.Id);
+            activity?.SetTag("product-name", product.Name);
+            activity?.SetTag("product-price", product.Price);
+            activity?.SetTag("product-quantity", product.Stock);
+
+            var orderId = Guid.NewGuid();
+
+            InventoryDiagnosticsReaded.InventoryReaded.Add(
+                delta: 1,
+                tag: new KeyValuePair<string, object>("product", product.Name));
+
+            //logger.LogInformation($"Product {orderId} created successfully.");
+
             return product is not null ? product : null!;
         }
 
-                public async Task<Response> CreateAsync(Product entity)
+        public async Task<Response> CreateAsync(Product entity)
         {
             if(entity is null)
                 return new Response(false, "Product cannot be null.");

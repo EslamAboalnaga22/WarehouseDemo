@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.Extensions.Logging;
+using System.Linq.Expressions;
 using Warehouse.SharedLibrary.Responses;
 
 namespace Warehouse.SharedLibrary.Interface

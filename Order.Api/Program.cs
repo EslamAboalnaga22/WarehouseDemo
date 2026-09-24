@@ -39,6 +39,9 @@ var rabbitMqConfig = builder.Configuration.GetSection("RabbitMqConfiguration").G
 builder.Services.AddSingleton(rabbitMqConfig);
 builder.Services.AddSingleton<IRabbitMqPublisher, RabbitMqPublisher>();
 
+// Observability with OpenTelemetry
+builder.Services.AddObservability(builder.Logging, "Order.Api");
+
 var app = builder.Build();
 
 
